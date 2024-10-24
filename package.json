@@ -1,0 +1,24 @@
+{
+  "name": "platformatic",
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "start": "platformatic start",
+    "start:debug": "platformatic start --watch",
+    "clean": "rm -fr ./dist",
+    "build": "platformatic compile"
+  },
+  "devDependencies": {
+    "fastify": "^5.0.0",
+    "borp": "^0.17.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@platformatic/runtime": "^2.5.5",
+    "platformatic": "^2.5.5"
+  },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  }
+}

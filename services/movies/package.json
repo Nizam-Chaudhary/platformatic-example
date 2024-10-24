@@ -1,0 +1,23 @@
+{
+  "name": "movies",
+  "scripts": {
+    "start": "platformatic start",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest --watch",
+    "clean": "rm -fr ./dist",
+    "build": "platformatic compile"
+  },
+  "devDependencies": {
+    "fastify": "^5.0.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.3",
+    "@vitest/ui": "^2.1.3"
+  },
+  "dependencies": {
+    "@platformatic/service": "^2.5.5"
+  },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  }
+}
