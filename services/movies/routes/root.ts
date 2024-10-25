@@ -13,7 +13,7 @@ export default async function (
   opts: FastifyPluginOptions
 ) {
   fastify.get('/example', async (request, reply) => {
-    reply.code(200).send({ hello: fastify.example });
+    reply.code(200).send({ hello: 'foobar' });
   });
 
   fastify.get('/hello', async (request, reply) => {

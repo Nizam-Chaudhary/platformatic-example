@@ -2,7 +2,7 @@
   "name": "movies",
   "scripts": {
     "start": "platformatic start",
-    "test": "vitest run",
+    "test": "pnpm build; vitest run",
     "test:ui": "vitest --ui",
     "test:watch": "vitest --watch",
     "clean": "rm -fr ./dist",

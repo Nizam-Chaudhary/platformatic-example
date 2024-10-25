@@ -1,11 +1,19 @@
 import { buildServer } from '@platformatic/service';
 import { afterAll, beforeAll, expect, test } from 'vitest';
-import example from '../../plugins/example';
 import { getServer } from '../helper';
 
+let server: Awaited<ReturnType<typeof buildServer>>;
+
+beforeAll(async () => {
+  server = await getServer();
+});
+
+afterAll(async () => {
+  server.close();
+});
+
 test('root', async () => {
-  global.server.register(example);
-  const res = await global.server.inject({
+  const res = await server.inject({
     method: 'GET',
     url: '/example',
   });
@@ -17,7 +25,7 @@ test('root', async () => {
 });
 
 test('hello', async () => {
-  const res = await global.server.inject({
+  const res = await server.inject({
     method: 'GET',
     url: '/hello',
   });
