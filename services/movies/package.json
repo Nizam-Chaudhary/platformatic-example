@@ -1,5 +1,6 @@
 {
   "name": "movies",
+  "type": "commonjs",
   "scripts": {
     "start": "platformatic start",
     "test": "pnpm build; vitest run",
@@ -9,13 +10,14 @@
     "build": "platformatic compile"
   },
   "devDependencies": {
+    "@vitest/ui": "^2.1.3",
     "fastify": "^5.0.0",
     "typescript": "^5.5.4",
-    "vitest": "^2.1.3",
-    "@vitest/ui": "^2.1.3"
+    "vitest": "^2.1.3"
   },
   "dependencies": {
-    "@platformatic/service": "^2.5.5"
+    "@platformatic/service": "^2.5.5",
+    "fastify-plugin": "^5.0.1"
   },
   "engines": {
     "node": "^18.8.0 || >=20.6.0"

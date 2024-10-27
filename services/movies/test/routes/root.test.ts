@@ -1,19 +1,7 @@
-import { buildServer } from '@platformatic/service';
-import { afterAll, beforeAll, expect, test } from 'vitest';
-import { getServer } from '../helper';
-
-let server: Awaited<ReturnType<typeof buildServer>>;
-
-beforeAll(async () => {
-  server = await getServer();
-});
-
-afterAll(async () => {
-  server.close();
-});
+import { expect, test } from 'vitest';
 
 test('root', async () => {
-  const res = await server.inject({
+  const res = await global.server.inject({
     method: 'GET',
     url: '/example',
   });
@@ -25,7 +13,7 @@ test('root', async () => {
 });
 
 test('hello', async () => {
-  const res = await server.inject({
+  const res = await global.server.inject({
     method: 'GET',
     url: '/hello',
   });
@@ -33,5 +21,17 @@ test('hello', async () => {
   expect(res.statusCode).toBe(200);
   expect(res.json()).toStrictEqual({
     message: 'Hello, World!',
+  });
+});
+
+test('/GET heath-check', async () => {
+  const res = await global.server.inject({
+    method: 'GET',
+    url: '/health-check',
+  });
+
+  expect(res.statusCode).toBe(200);
+  expect(res.json()).toStrictEqual({
+    message: 'OK',
   });
 });
