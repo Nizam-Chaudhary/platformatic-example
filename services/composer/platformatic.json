@@ -1,23 +1,33 @@
 {
-  "$schema": "https://schemas.platformatic.dev/@platformatic/composer/2.5.5.json",
-  "composer": {
-    "services": [
-      {
-        "id": "hello",
-        "openapi": {
-          "url": "/documentation/json",
-          "prefix": "/hello"
-        }
-      },
-      {
-        "id": "movies",
-        "openapi": {
-          "url": "/documentation/json",
-          "prefix": "/movies"
-        }
-      }
-    ],
-    "refreshTimeout": 1000
-  },
-  "watch": true
+	"$schema": "https://schemas.platformatic.dev/@platformatic/composer/2.5.5.json",
+	"composer": {
+		"services": [
+			{
+				"id": "hello",
+				"openapi": {
+					"url": "/documentation/json",
+					"prefix": "/hello"
+				}
+			},
+			{
+				"id": "movies",
+				"openapi": {
+					"url": "/documentation/json",
+					"prefix": "/movies"
+				}
+			}
+		],
+		"refreshTimeout": 1000
+	},
+	"plugins": {
+		"paths": [
+			{
+				"path": "./plugins",
+				"encapsulate": false
+			},
+			"./routes"
+		],
+		"typescript": "{PLT_MOVIES_TYPESCRIPT}"
+	},
+	"watch": true
 }
