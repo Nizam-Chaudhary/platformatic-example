@@ -2,10 +2,14 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
 export default async function (
-  fastify: FastifyInstance,
-  opts: FastifyPluginOptions
+	fastify: FastifyInstance,
+	opts: FastifyPluginOptions
 ) {
-  fastify.get('/health-check', async (request, reply) => {
-    reply.code(200).send({ message: 'OK' });
-  });
+	fastify.get(
+		'/health-check',
+		{ schema: { tags: ['Health'] } },
+		async (request, reply) => {
+			reply.code(200).send({ message: 'OK' });
+		}
+	);
 }

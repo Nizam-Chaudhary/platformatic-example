@@ -27,9 +27,21 @@ importers:
 
   services/composer:
     dependencies:
+      '@fastify/basic-auth':
+        specifier: ^6.0.1
+        version: 6.0.1
+      '@fastify/swagger':
+        specifier: ^9.4.0
+        version: 9.4.0
       '@platformatic/composer':
         specifier: ^2.5.5
         version: 2.5.5
+      '@scalar/fastify-api-reference':
+        specifier: ^1.25.72
+        version: 1.25.72
+      fastify-plugin:
+        specifier: ^5.0.1
+        version: 5.0.1
     devDependencies:
       borp:
         specifier: ^0.17.0
@@ -541,6 +553,9 @@ packages:
 
   '@fastify/swagger@9.2.0':
     resolution: {integrity: sha512-tuy78fW3G4z8EhTdopAu6gXbllFrQBkcYduOmPiEVESZNaLnxR8N80YVu7F6WuMwk7sd9rYGnGo9bxDQChCFjg==}
+
+  '@fastify/swagger@9.4.0':
+    resolution: {integrity: sha512-3hF7asqyNfu41aeDA/ATlIG0RY4XizgaDqPR0nc1Unt3EiXWjkVMiELLaH5WZKNvB4BA/5Wovxdin7N4ii7YHw==}
 
   '@fastify/under-pressure@9.0.1':
     resolution: {integrity: sha512-aafxmJYJBgbYad4eoKwaWXtyBwoLoUCpVDahjzsvRcCjR8esm0F6s3jACWWtZqgcE498gV7fG1X4vzGt9lWw9A==}
@@ -1296,12 +1311,24 @@ packages:
     resolution: {integrity: sha512-fd/uW08v2sbu649j+c3QNwuU3Irkje81R+ShIvqeyiYCMb9bUUohihNCtWhh+jx87Yq1Dtg0tS7j/TVFptO91w==}
     engines: {node: '>=18'}
 
+  '@scalar/fastify-api-reference@1.25.72':
+    resolution: {integrity: sha512-gbHvUx8QQEj9vy7nhDCCOaZF8Pwrb6vFSY/tsayqPE3+mNB/rKzMM+sikqqpxKMPl+oJD/qhh1DTIHWyCtWajw==}
+    engines: {node: '>=18'}
+
   '@scalar/openapi-types@0.1.4':
     resolution: {integrity: sha512-+wRXgmqzgDnj8Dxqf4OOPMPo4or/LRd1Bsy4pnrIW0yBt8rKSdtBb+jH/aRnhgDDmKVjWxJ+KFk7WlSKvZwNTw==}
     engines: {node: '>=18'}
 
+  '@scalar/openapi-types@0.1.5':
+    resolution: {integrity: sha512-6geH9ehvQ/sG/xUyy3e0lyOw3BaY5s6nn22wHjEJhcobdmWyFER0O6m7AU0ZN4QTjle/gYvFJOjj552l/rsNSw==}
+    engines: {node: '>=18'}
+
   '@scalar/types@0.0.17':
     resolution: {integrity: sha512-wUrvNnYFMULsHENX/9TP3oyECRTtZsP06mOZU+RlWg9sRtzWVTjlBCahkgUETL93J+Bz2RLFSKVgPyNN4fpIpA==}
+    engines: {node: '>=18'}
+
+  '@scalar/types@0.0.22':
+    resolution: {integrity: sha512-+S1flivP58p2uiHM4dU5ZaAb20wbVcP0nV39KWoVjijvHDx1HWtAGg+PaDXRCRj2zM4QzBeg4olaso20Tm26fQ==}
     engines: {node: '>=18'}
 
   '@sec-ant/readable-stream@0.4.1':
@@ -1362,6 +1389,9 @@ packages:
 
   '@unhead/schema@1.11.10':
     resolution: {integrity: sha512-lXh7cm5XtFaw3gc+ZVXTSfIHXiBpAywbjtEiOsz5TR4GxOjj2rtfOAl4C3Difk1yupP6L2otYmOZdn/i8EXSJg==}
+
+  '@unhead/schema@1.11.13':
+    resolution: {integrity: sha512-fIpQx6GCpl99l4qJXsPqkXxO7suMccuLADbhaMSkeXnVEi4ZIle+l+Ri0z+GHAEpJj17FMaQdO5n9FMSOMUxkw==}
 
   '@vitest/expect@2.1.3':
     resolution: {integrity: sha512-SNBoPubeCJhZ48agjXruCI57DvxcsivVDdWz+SSsmjTT4QN/DfHk3zB/xKsJqMs26bLZ/pNRLnCf0j679i0uWQ==}
@@ -3999,6 +4029,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@fastify/swagger@9.4.0':
+    dependencies:
+      fastify-plugin: 5.0.1
+      json-schema-resolver: 2.0.0
+      openapi-types: 12.1.3
+      rfdc: 1.4.1
+      yaml: 2.6.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@fastify/under-pressure@9.0.1':
     dependencies:
       '@fastify/error': 4.0.0
@@ -4820,7 +4860,7 @@ snapshots:
       '@fastify/http-proxy': 10.0.1
       '@fastify/reply-from': 11.0.1
       '@fastify/static': 8.0.2
-      '@fastify/swagger': 9.2.0
+      '@fastify/swagger': 9.4.0
       '@platformatic/config': 2.5.5
       '@platformatic/generators': 2.5.5
       '@platformatic/graphql-composer': 0.8.2
@@ -4828,7 +4868,7 @@ snapshots:
       '@platformatic/service': 2.5.5
       '@platformatic/telemetry': 2.5.5
       '@platformatic/utils': 2.5.5
-      '@scalar/fastify-api-reference': 1.25.48
+      '@scalar/fastify-api-reference': 1.25.72
       ajv: 8.17.1
       commist: 3.2.0
       console-table-printer: 2.12.1
@@ -5199,7 +5239,7 @@ snapshots:
 
   '@platformatic/telemetry@2.5.5':
     dependencies:
-      '@fastify/swagger': 9.2.0
+      '@fastify/swagger': 9.4.0
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/auto-instrumentations-node': 0.50.2(@opentelemetry/api@1.9.0)
       '@opentelemetry/core': 1.27.0(@opentelemetry/api@1.9.0)
@@ -5316,12 +5356,24 @@ snapshots:
       '@scalar/types': 0.0.17
       fastify-plugin: 4.5.1
 
+  '@scalar/fastify-api-reference@1.25.72':
+    dependencies:
+      '@scalar/types': 0.0.22
+      fastify-plugin: 4.5.1
+
   '@scalar/openapi-types@0.1.4': {}
+
+  '@scalar/openapi-types@0.1.5': {}
 
   '@scalar/types@0.0.17':
     dependencies:
       '@scalar/openapi-types': 0.1.4
       '@unhead/schema': 1.11.10
+
+  '@scalar/types@0.0.22':
+    dependencies:
+      '@scalar/openapi-types': 0.1.5
+      '@unhead/schema': 1.11.13
 
   '@sec-ant/readable-stream@0.4.1': {}
 
@@ -5388,6 +5440,11 @@ snapshots:
       '@types/node': 22.7.9
 
   '@unhead/schema@1.11.10':
+    dependencies:
+      hookable: 5.5.3
+      zhead: 2.2.4
+
+  '@unhead/schema@1.11.13':
     dependencies:
       hookable: 5.5.3
       zhead: 2.2.4
