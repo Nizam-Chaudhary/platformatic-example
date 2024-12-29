@@ -18,4 +18,12 @@ export default async function (
 			return { hello: fastify.example };
 		}
 	);
+
+	fastify.get(
+		'/documentation/json',
+		{ logLevel: 'silent' },
+		async (request, reply) => {
+			reply.status(200).send(fastify.swagger())
+		}
+	);
 }

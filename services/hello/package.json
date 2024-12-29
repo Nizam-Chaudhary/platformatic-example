@@ -13,7 +13,9 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@platformatic/service": "^2.5.5"
+    "@fastify/swagger": "^9.4.0",
+    "@platformatic/service": "^2.5.5",
+    "fastify-plugin": "^5.0.1"
   },
   "engines": {
     "node": "^18.8.0 || >=20.6.0"

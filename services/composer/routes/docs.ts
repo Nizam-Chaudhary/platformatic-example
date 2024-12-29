@@ -1,37 +1,52 @@
 import { FastifyInstance } from 'fastify';
+import { isErrorResult, merge } from 'openapi-merge';
+import { Agent, request } from 'undici';
+const FastifyUndiciDispatcher = require('fastify-undici-dispatcher')
 
 export default async (fastify: FastifyInstance) => {
-	fastify.get('/docs/json', async () => {
-		const swaggerDocs = fastify.swagger();
+    const dispatcher = new FastifyUndiciDispatcher({
+        dispatcher: new Agent(),
+        domain: '.local'
+    })
 
-		// @ts-ignore
-		swaggerDocs['components'] = {
-			securitySchemes: {
-				JWTAuth: {
-					type: 'apiKey',
-					name: 'Authorization',
-					in: 'header',
-				},
-			},
-		};
-		// @ts-ignore
-		swaggerDocs['x-tagGroups'] = tagGroups;
-		console.log('docs', swaggerDocs);
-		return swaggerDocs;
-	});
+    dispatcher.route('composer', fastify)
+
+	fastify.get('/openapi.json', async (req, reply) => {
+	    const mainOpenApiSpec = fastify.swagger() as any;
+
+		try {
+		    const [moviesOpenApiSpec, helloOpenApiSpec] = await Promise.all([
+                (await request('http://composer.local/movies/documentation/json', {dispatcher: dispatcher})).body.text(),
+                (await request('http://composer.local/hello/documentation/json', {dispatcher: dispatcher})).body.text()
+            ])
+
+            const mergeResult = merge([
+                {
+                    oas: mainOpenApiSpec,
+                },
+                {
+                    oas: JSON.parse(moviesOpenApiSpec),
+                    pathModification: {
+                        prepend: '/movies'
+                    }
+                },
+                {
+                    oas: JSON.parse(helloOpenApiSpec),
+                    pathModification: {
+                        prepend: '/hello'
+                    }
+                }
+            ])
+
+            if(isErrorResult(mergeResult)) {
+                return mainOpenApiSpec
+            } else {
+                return mergeResult.output
+            }
+
+
+        } catch (error: any) {
+            return mainOpenApiSpec
+        }
+    });
 };
-
-const tagGroups = [
-	{
-		name: "Default API's",
-		tags: ['Default'],
-	},
-	{
-		name: 'Movies',
-		tags: ['Movies'],
-	},
-	{
-		name: 'Hello',
-		tags: ['Hello'],
-	},
-];

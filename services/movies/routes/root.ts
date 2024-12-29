@@ -22,9 +22,23 @@ export default async function (
 
 	fastify.get(
 		'/hello',
-		{ schema: { tags: ['Movies'] } },
+        {
+            schema: {
+                tags: ['Movies'] ,
+                security: [{ bearerAuth: [] }],
+            },
+        },
 		async (request, reply) => {
+		    fastify.log.info(request.headers,'test')
 			reply.code(200).send({ message: 'Hello, World!' });
+		}
+	);
+
+	fastify.get(
+		'/documentation/json',
+		{ logLevel: 'silent' },
+		async (request, reply) => {
+			reply.status(200).send(fastify.swagger())
 		}
 	);
 

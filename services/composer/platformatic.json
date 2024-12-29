@@ -3,18 +3,10 @@
 	"composer": {
 		"services": [
 			{
-				"id": "hello",
-				"openapi": {
-					"url": "/documentation/json",
-					"prefix": "/hello"
-				}
+				"id": "hello"
 			},
 			{
-				"id": "movies",
-				"openapi": {
-					"url": "/documentation/json",
-					"prefix": "/movies"
-				}
+				"id": "movies"
 			}
 		],
 		"refreshTimeout": 1000
